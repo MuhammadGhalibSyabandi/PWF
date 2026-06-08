@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use Illuminate\Support\Facades\DB;
 
 
 class DosenController extends Controller
 {
+    
+    public function index(){
+        $dosens=Dosen::latest()->paginate(5);
+        return view('akademik.dosen', ['dosens'=>$dosens]);
+    }
 
     public function insertDosen()
     {
@@ -170,10 +176,6 @@ class DosenController extends Controller
             echo $query[0]->total_dosen;
     }
 
-    // public function index(){
-    //     $arrDosen=['ronal hadi','deni s','fazrol r','deddy p','ervan a','cipto p'];
-    //     return view('akademik.dosen',['dosen'=>$arrDosen]);
-    // }
 
     // public function show(){
     //     $nama='bill gates';

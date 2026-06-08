@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,19 @@ Route::get('/soft-delete', [MahasiswaController::class, 'softDelete']);
 Route::get('/with-trashed', [MahasiswaController::class, 'withTrashed']);
 Route::get('/restore', [MahasiswaController::class, 'restore']);
 Route::get('/force-delete', [MahasiswaController::class, 'forceDelete']);
+
+//modul 12 auth
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard/admin', function () {
+    return view('dashboard');
+})->middleware('auth');
+
+Route::get('/dashboard/user', function () {
+    return view('dashboard');
+})->middleware('auth');
 
 
 

@@ -1,0 +1,29 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Dosen>
+ */
+class DosenFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'nik' => fake()->bothify('########'),
+            'nama' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'no_telp' => fake()->phoneNumber(),
+            'prodi' => fake()->randomElement(['MI', 'TRPL', 'TEKOM']),
+            'alamat' => $this->faker->address()
+
+        ];
+    }
+}

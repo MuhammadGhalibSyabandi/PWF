@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
+    
+    public function index(){
+        $mahasiswas=Mahasiswa::latest()->paginate(5);
+        return view('akademik.mahasiswa', ['mahasiswas'=>$mahasiswas]);
+    }
 
     public function cekObjek(){
         $mahasiswa=new Mahasiswa();
@@ -153,16 +158,10 @@ class MahasiswaController extends Controller
                 echo $mhs->alamat . '<br>';
                 echo '<hr>';
             }
-            // echo $mahasiswa[0]->id . '<br>';
-            // echo $mahasiswa[0]->nim . '<br>'; 
-            // echo $mahasiswa[0]->nama_lengkap . '<br>'; 
-            // echo $mahasiswa[0]->tempat_lahir . '<br>'; 
-            // echo $mahasiswa[0]->alamat . '<br>'; 
-        //dd($mahasiswa);
     }
 
     public function allView(){
-        $mahasiswas=Mahasiswa::all();
+        $mahasiswas = Mahasiswa::latest()->paginate(5);
         return view('akademik.mahasiswa',['mahasiswas'=>$mahasiswas]);
     }
 
@@ -310,10 +309,6 @@ class MahasiswaController extends Controller
     }
 
 
-    // public function index(){
-    //     $arrMhs=['bill gates','larry page','taylor otwell'];
-    //     return view('akademik.mahasiswa',['mhs'=>$arrMhs]);
-    // }
 
     // public function show(){
     //     $nama='bill gates';

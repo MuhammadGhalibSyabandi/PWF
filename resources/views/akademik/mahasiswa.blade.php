@@ -29,5 +29,8 @@
         </tr>
     @endforeach
 </table>
+<div class="mt-3">
+    {{ $mahasiswas->links() }}
+</div>
 @endsection
 
